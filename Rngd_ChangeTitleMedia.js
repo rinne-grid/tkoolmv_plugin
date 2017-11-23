@@ -71,7 +71,9 @@
         this.addChild(this._backSprite1);
         this.addChild(this._backSprite2);
     };
-
+    //-------------------------------------------------------------------------
+    // Scene_TitleのBGM再生処理をカスタマイズする
+    //-------------------------------------------------------------------------
     Scene_Title.prototype.playTitleMusic = function() {
 
         var titleBgmName = parameters["TARGET_BGM_NAME"];
