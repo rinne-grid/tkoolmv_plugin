@@ -56,7 +56,6 @@
             // ブランクの場合、データベースのタイトル画像設定を利用する
             title1Name = parameters["TARGET_PICTURE_1"] || $dataSystem.title1Name;
             title2Name = parameters["TARGET_PICTURE_2"] || $dataSystem.title2Name;
-
             if(title1Name.toLowerCase() === "off") {
                 title1Name = "";
             }
@@ -65,15 +64,16 @@
                 title2Name = "";
             }
 
+        } else {
+            title1Name = $dataSystem.title1Name;
+            title2Name = $dataSystem.title2Name;
         }
         this._backSprite1 = new Sprite(ImageManager.loadTitle1(title1Name));
         this._backSprite2 = new Sprite(ImageManager.loadTitle2(title2Name));
         this.addChild(this._backSprite1);
         this.addChild(this._backSprite2);
     };
-    //-------------------------------------------------------------------------
-    // Scene_TitleのBGM再生処理をカスタマイズする
-    //-------------------------------------------------------------------------
+
     Scene_Title.prototype.playTitleMusic = function() {
 
         var titleBgmName = parameters["TARGET_BGM_NAME"];
@@ -110,7 +110,7 @@
         var maxSaveFiles = DataManager.maxSavefiles();
         var targetSwitchId = parameters["TARGET_SWTICH_ID"];
         var doTitleChange = false;
-        if(targetSwitchId === "" || targetSwitchId === undefined) {
+        if(targetSwitchId === "" || targetSwitchId === undefined || targetSwitchId === null) {
             return doTitleChange;
         }
         for(var i = 1; i <= maxSaveFiles; i++) {
